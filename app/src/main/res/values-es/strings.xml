@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="settings_order_by_default_label">Ninguna</string>
     <string name="settings_order_by_default">Defecto</string>
@@ -11,4 +12,6 @@
     <string name="share_message">Echa un vistazo a este desarrollador impresionante @<xliff:g id="username" example="muilat">%s</xliff:g>, <xliff:g id="url" example="github.com/muilat">%s</xliff:g></string>
     <string name="share">Compartir</string>
     <string name="settings_title">J- Developers Ajustes</string>
+    <string name="no_internet">Sin conexión a Internet</string>
+    <string name="settings_order_by_label">Ordenar por</string>
 </resources>

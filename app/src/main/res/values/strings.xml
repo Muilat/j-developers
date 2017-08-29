@@ -2,11 +2,12 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" translatable="false">J-Developers</string>
     <string name="empty">No Developer found</string>
+    <string name="no_internet">No Internet connection</string>
     <string name="settings">Settings</string>
     <string name="share">Share</string>
     <string name="settings_title">J- Developers Settings</string>
     <string name="settings_dev_number_key" translatable="false">devNumber</string>
-    <string name="settings_dev_number_defaultvalue">10</string>
+    <string name="settings_dev_number_defaultvalue" translatable="false">10</string>
 
     <string name="settings_order_by_username_label">Username</string>
     <string name="settings_order_by_username_value" translatable="false">username</string>

@@ -12,4 +12,5 @@
     <string name="settings_order_by_default">Défaut</string>
     <string name="settings_order_by_default_label">Aucun</string>
     <string name="settings_title">J- Developers Paramètres</string>
+    <string name="no_internet">Pas de connexion Internet</string>
 </resources>

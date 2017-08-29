@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 TextView empty_view = (TextView) findViewById(R.id.empty_view);
                 //make it visible
                 empty_view.setVisibility(View.VISIBLE);
-                empty_view.setText("No internet connection");
+                empty_view.setText(getString(R.string.no_internet));
                 ListView listView = (ListView) findViewById(R.id.list_quake);
                 listView.setEmptyView(findViewById(R.id.empty_view));
 
