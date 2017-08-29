@@ -20,7 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowItemActivity"
+        <activity android:name=".ShowDeveloperActivity"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
+        <activity android:name=".SettingsActivity"
             android:parentActivityName=".MainActivity">
 
         </activity>

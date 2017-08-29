@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +13,7 @@ import android.widget.Toast;
 import com.bumptech.glide.*;
 import com.muilat.j_developers.utilities.Developer;
 
-public class ShowItemActivity extends AppCompatActivity {
+public class ShowDeveloperActivity extends AppCompatActivity {
 
     Developer developer = MainActivity.current_developer;
 
@@ -23,7 +22,7 @@ Toast toast;
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_item);
+        setContentView(R.layout.activity_show_developer);
 
 //        Intent callerActivity = getIntent();
 //
@@ -45,10 +44,12 @@ Toast toast;
 
     public void  shareProfileButton(View view){
 
+        String share_message = getString(R.string.share_message,developer.getUsername(),developer.getProfileUrl());
+
         Intent shareIntent = ShareCompat.IntentBuilder.from(this)
-            .setText("Checkout this awesome developer @"+developer.getUsername()+", "+developer.getProfileUrl())
-            .setChooserTitle("Share Developer with")
-            .setSubject("Lagos Java Developer")
+            .setText(share_message)
+            .setChooserTitle(getString(R.string.share_choser_title))
+            .setSubject(getString(R.string.share_subject))
                 .setType("text/plain")
                 .createChooserIntent()
                 ;

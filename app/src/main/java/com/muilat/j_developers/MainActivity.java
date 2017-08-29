@@ -2,7 +2,6 @@ package com.muilat.j_developers;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.LoaderManager;
@@ -23,7 +22,6 @@ import com.muilat.j_developers.utilities.Developer;
 import com.muilat.j_developers.utilities.DeveloperAdapter;
 import com.muilat.j_developers.utilities.DeveloperLoader;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Developer>>{
@@ -78,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     /**
+
      * Update the screen with the given earthquake (which was the result of the
      * {@link DeveloperLoader}).
      */
@@ -123,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
                 current_developer = developer;
 
-                Intent developerIntent = new Intent(MainActivity.this, ShowItemActivity.class);
+                Intent developerIntent = new Intent(MainActivity.this, ShowDeveloperActivity.class);
 
                 startActivity(developerIntent);
 
@@ -158,7 +157,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings){
-            Toast.makeText(this, "sssssssssssssssssssssss", Toast.LENGTH_SHORT).show();
+
+            Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(settingsIntent);
         }
 
         return super.onOptionsItemSelected(item);

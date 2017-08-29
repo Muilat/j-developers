@@ -53,9 +53,9 @@ public class DeveloperAdapter extends ArrayAdapter<Developer> {
         // If not, this view already has the layout inflated from a previous call to getView,
         // and we modify the View widgets as usual.
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_developer, parent, false);
         }
-//        LinearLayout list_item = (LinearLayout) convertView.findViewById(R.id.list_item);
+//        LinearLayout list_developer = (LinearLayout) convertView.findViewById(R.id.list_developer);
 
         TextView username = (TextView) convertView.findViewById(R.id.username);
         ImageView profile_photo = (ImageView)convertView.findViewById(R.id.profile_photo);
