@@ -5,9 +5,18 @@
     <string name="no_internet">No Internet connection</string>
     <string name="settings">Settings</string>
     <string name="share">Share</string>
-    <string name="settings_title">J- Developers Settings</string>
+    <string name="settings_title">J-Developers Settings</string>
+
     <string name="settings_dev_number_key" translatable="false">devNumber</string>
     <string name="settings_dev_number_defaultvalue" translatable="false">10</string>
+
+    <string name="settings_location_key" translatable="false">location</string>
+    <string name="settings_location_defaultvalue" translatable="false">lagos</string>
+    <string name="settings_location_title" >Developers Location</string>
+
+    <string name="settings_language_key" translatable="false">language</string>
+    <string name="settings_language_defaultvalue" translatable="false">java</string>
+    <string name="settings_language_title" >Developers Language</string>
 
     <string name="settings_order_by_username_label">Username</string>
     <string name="settings_order_by_username_value" translatable="false">username</string>

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.muilat.j_developers.MainActivity;
+import com.muilat.j_developers.data.JDeveloperPreferences;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,11 +45,17 @@ public class DeveloperLoader extends android.support.v4.content.AsyncTaskLoader<
     public ArrayList<Developer> loadInBackground() {
 
         if(fetched_developers == null) {
+
+            String location = JDeveloperPreferences
+                    .getPreferredDeveloperLocation(getContext());
+            String language = JDeveloperPreferences
+                    .getPreferredDeveloperLanguage(getContext());
+            String requestString = "location:"+location+"+language:"+language;
             // Perform HTTP request to the URL and receive a JSON response back
             String jsonResponse = "";
             try {
-//                jsonResponse = makeHttpRequest(USGS_REQUEST_URL);
-                jsonResponse = NetworkUtils.getResponseFromHttpUrl();
+                URL githubRequestUrl = NetworkUtils.buildUrl(requestString);
+                jsonResponse = NetworkUtils.getResponseFromHttpUrl(githubRequestUrl);
             } catch (IOException e) {
                 // TODO Handle the IOException
                 Log.v("loadInBackground", "Unable to load in background");
@@ -76,52 +83,6 @@ public class DeveloperLoader extends android.support.v4.content.AsyncTaskLoader<
         forceLoad();
     }
 
-    /**
-     * Make an HTTP request to the given URL and return a String as the response.
-     */
-//    private String makeHttpRequest(URL url) throws IOException {
-//        String jsonResponse = "";
-//        HttpURLConnection urlConnection = null;
-//        InputStream inputStream = null;
-//        try {
-//            urlConnection = (HttpURLConnection) url.openConnection();
-//            urlConnection.setRequestMethod("GET");
-//            urlConnection.setReadTimeout(10000 /* milliseconds */);
-//            urlConnection.setConnectTimeout(15000 /* milliseconds */);
-//            urlConnection.connect();
-//            inputStream = urlConnection.getInputStream();
-//            jsonResponse = readFromStream(inputStream);
-//        } catch (IOException e) {
-//            // TODO: Handle the exception
-//        } finally {
-//            if (urlConnection != null) {
-//                urlConnection.disconnect();
-//            }
-//            if (inputStream != null) {
-//                // function must handle java.io.IOException here
-//                inputStream.close();
-//            }
-//        }
-//        return jsonResponse;
-//    }
-//
-//    /**
-//     * Convert the {@link InputStream} into a String which contains the
-//     * whole JSON response from the server.
-//     */
-//    private String readFromStream(InputStream inputStream) throws IOException {
-//        StringBuilder output = new StringBuilder();
-//        if (inputStream != null) {
-//            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
-//            BufferedReader reader = new BufferedReader(inputStreamReader);
-//            String line = reader.readLine();
-//            while (line != null) {
-//                output.append(line);
-//                line = reader.readLine();
-//            }
-//        }
-//        return output.toString();
-//    }
 
     /*
 //return a list of{@link Developer} object that has been built up from
@@ -161,7 +122,7 @@ public class DeveloperLoader extends android.support.v4.content.AsyncTaskLoader<
             /* if any erroe is thrown when executing the try;
             //catch the excdeption so the app doesnt crash
              */
-            Log.v("QueryUtility","problem parsing the developer JSON results", e);
+            Log.v("DeveloperLoader","problem parsing the developer JSON results", e);
 
         }
 

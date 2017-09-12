@@ -16,11 +16,15 @@
 package com.muilat.j_developers.data;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.preference.PreferenceManager;
 
-public class SunshinePreferences extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener{
+import com.muilat.j_developers.R;
+
+public class JDeveloperPreferences extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener{
 
     /*
      * Human readable location string, provided by the API.  Because for styling,
@@ -62,13 +66,11 @@ public class SunshinePreferences extends PreferenceFragmentCompat implements Pre
      * Helper method to handle setting a new location in preferences.  When this happens
      * the database may need to be cleared.
      *
-     * @param c               Context used to get the SharedPreferences
-     * @param locationSetting The location string used to request updates from the server.
-     * @param lat             The latitude of the city
-     * @param lon             The longitude of the city
+     * @param context  Context used to get the SharedPreferences
+
      */
-    static public void setLocation(Context c, String locationSetting, double lat, double lon) {
-        /** This will be implemented in a future lesson **/
+    static public void setLocation(Context context) {
+
     }
 
     /**
@@ -81,17 +83,27 @@ public class SunshinePreferences extends PreferenceFragmentCompat implements Pre
     }
 
     /**
-     * Returns the location currently set in Preferences. The default location this method
-     * will return is "94043,USA", which is Mountain View, California. Mountain View is the
-     * home of the headquarters of the Googleplex!
-     *
      * @param context Context used to get the SharedPreferences
-     * @return Location The current user has set in SharedPreferences. Will default to
-     * "94043,USA" if SharedPreferences have not been implemented yet.
      */
-    public static String getPreferredWeatherLocation(Context context) {
-        /** This will be implemented in a future lesson **/
-        return getDefaultWeatherLocation();
+    public static String getPreferredDeveloperLocation(Context context) {
+        SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String keyForLocation = context.getString(R.string.settings_location_key);
+        String defaultLocation = context.getString(R.string.settings_location_defaultvalue);
+
+        return prefs.getString(keyForLocation, defaultLocation);
+    }
+
+    /**
+     * @param context Context used to get the SharedPreferences
+     */
+    public static String getPreferredDeveloperLanguage(Context context) {
+        SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String keyForLanguage = context.getString(R.string.settings_language_key);
+        String defaultLanguage = context.getString(R.string.settings_language_defaultvalue);
+
+        return prefs.getString(keyForLanguage, defaultLanguage);
     }
 
     /**

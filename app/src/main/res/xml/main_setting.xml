@@ -3,18 +3,34 @@
     android:title="@string/settings_title">
 
    <EditTextPreference
-       android:defaultValue="@string/settings_dev_number_defaultvalue"
-       android:inputType="number"
-       android:key="@string/settings_dev_number_key"
+       android:defaultValue="@string/settings_language_defaultvalue"
+       android:inputType="textCapWords"
+       android:key="@string/settings_language_key"
        android:selectAllOnFocus="true"
-       android:title="Developer Number"
+       android:title="@string/settings_language_title"
 
        />
-   <ListPreference
-       android:defaultValue="@string/settings_order_by_default"
-       android:entries="@array/settings_order_by_labels"
-       android:entryValues="@array/settings_order_by_values"
-       android:key="@string/settings_order_by_key"
-       android:title="@string/settings_order_by_label" />
+   <EditTextPreference
+       android:defaultValue="@string/settings_location_defaultvalue"
+       android:inputType="textCapWords"
+       android:key="@string/settings_location_key"
+       android:selectAllOnFocus="true"
+       android:title="@string/settings_location_title"
+
+       />
+   <!--<EditTextPreference-->
+       <!--android:defaultValue="@string/settings_dev_number_defaultvalue"-->
+       <!--android:inputType="number"-->
+       <!--android:key="@string/settings_dev_number_key"-->
+       <!--android:selectAllOnFocus="true"-->
+       <!--android:title="Developer Number"-->
+
+       <!--/>-->
+   <!--<ListPreference-->
+       <!--android:defaultValue="@string/settings_order_by_default"-->
+       <!--android:entries="@array/settings_order_by_labels"-->
+       <!--android:entryValues="@array/settings_order_by_values"-->
+       <!--android:key="@string/settings_order_by_key"-->
+       <!--android:title="@string/settings_order_by_label" />-->
 
 </PreferenceScreen>

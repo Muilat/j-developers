@@ -18,6 +18,9 @@ package com.muilat.j_developers.utilities;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.muilat.j_developers.MainActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,41 +36,35 @@ public final class NetworkUtils {
 
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
-    static String Github_url_string = "https://api.github.com/search/users?q=location:lagos+language:java";
+    static String Github_url_string = "https://api.github.com/search/users?q=";
 
 
     private static URL Github_REQUEST_URL;
 
-    /*
-     * NOTE: These values only effect responses from OpenWeatherMap, NOT from the fake weather
-     * server. They are simply here to allow us to teach you how to build a URL if you were to use
-     * a real API.If you want to connect your app to OpenWeatherMap's API, feel free to! However,
-     * we are not going to show you how to do so in this course.
-     */
 
-    /* The format we want our API to return */
-    private static final String format = "json";
-    /* The units we want our API to return */
-    private static final String units = "metric";
-    /* The number of days we want our API to return */
-    private static final int numDays = 14;
+
+    /* The location we want our API to return */
+    private static final String location = "lagos";
+    /* The language we want our API to return */
+    private static final String language = "java";
+    /* The number of developers we want our API to return */
+    private static final int numDays = 30;
 
     final static String QUERY_PARAM = "q";
-    final static String LAT_PARAM = "lat";
-    final static String LON_PARAM = "lon";
-    final static String FORMAT_PARAM = "mode";
-    final static String UNITS_PARAM = "units";
-    final static String DAYS_PARAM = "cnt";
+
 
     /**
      * Builds the URL used to talk to the weather server using a location. This location is based
      * on the query capabilities of the weather provider that we are using.
      *
-     * @return The URL to use to query the weather server.
+     * @return The URL to use to query the github server.
      */
-    public static URL buildUrl() {
-        // COMPLETED (1) Fix this method to return the URL used to query Open Weather Map's API
+    public static URL buildUrl(String queryString) {
+        Log.v(TAG, "Built Strin " + queryString);
+        Github_url_string += queryString;
+
         Uri builtUri = Uri.parse(Github_url_string).buildUpon()
+//                .appendQueryParameter(QUERY_PARAM, queryString)
 
                 .build();
 
@@ -79,6 +76,7 @@ public final class NetworkUtils {
         }
 
         Log.v(TAG, "Built URI " + Github_REQUEST_URL);
+//        Toast.makeText(getContext(), "jg jfg", Toast.LENGTH_SHORT).show();
         return Github_REQUEST_URL;
     }
 
@@ -91,9 +89,8 @@ public final class NetworkUtils {
      * @throws IOException Related to network and stream reading
      */
     @Nullable
-    public static String getResponseFromHttpUrl() throws IOException {
-        buildUrl();
-        HttpURLConnection urlConnection = (HttpURLConnection) Github_REQUEST_URL.openConnection();
+    public static String getResponseFromHttpUrl(URL url) throws IOException {
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             InputStream in = urlConnection.getInputStream();
 

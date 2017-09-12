@@ -2,12 +2,15 @@ package com.muilat.j_developers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,12 +27,16 @@ import com.muilat.j_developers.utilities.DeveloperLoader;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Developer>>{
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Developer>>, SharedPreferences.OnSharedPreferenceChangeListener{
 
 //    String Github_url_string = "https://api.github.com/search/users?q=location:lagos+language:java";
 //    static URL Github_REQUEST_URL;
 
     public static  Developer current_developer;
+
+    //for flaging if the pref has changed
+    private static boolean PREFERENCES_HAVE_BEEN_UPDATED = false;
+
 
 
 
@@ -39,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
 
 
+        ///register onsharedpreferencechangelistener
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .registerOnSharedPreferenceChangeListener(this);
 
         ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -50,22 +60,22 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
         else {
 
-            //if there is already fetched_developers
-            if (DeveloperLoader.fetched_developers == null) {
-                //hide progress bar
+            //hide progress bar
 
-                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-                progressBar.setVisibility(View.GONE);
-                //internet is not available; make it known
-                TextView empty_view = (TextView) findViewById(R.id.empty_view);
-                //make it visible
-                empty_view.setVisibility(View.VISIBLE);
-                empty_view.setText(getString(R.string.no_internet));
-                ListView listView = (ListView) findViewById(R.id.list_quake);
-                listView.setEmptyView(findViewById(R.id.empty_view));
+            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+            progressBar.setVisibility(View.GONE);
+            //internet is not available; make it known
+            TextView empty_view = (TextView) findViewById(R.id.empty_view);
+            //make it visible
+            empty_view.setVisibility(View.VISIBLE);
+            empty_view.setText(getString(R.string.no_internet));
+            ListView listView = (ListView) findViewById(R.id.list_quake);
+            listView.setEmptyView(findViewById(R.id.empty_view));
 
-            }
+
         }
+
+
     }
 
     @Override
@@ -163,5 +173,35 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        PREFERENCES_HAVE_BEEN_UPDATED = true;
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        /*
+         * If the preferences for location or units have changed since the user was last in
+         * MainActivity, perform another query and set the flag to false.
+         */
+        if (PREFERENCES_HAVE_BEEN_UPDATED) {
+            Log.d("MainActivity", "onStart: preferences were updated");
+            getSupportLoaderManager().restartLoader(1, null, this);
+            PREFERENCES_HAVE_BEEN_UPDATED = false;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        /* Unregister MainActivity as an OnPreferenceChangedListener to avoid any memory leaks. */
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
     }
 }
