@@ -9,63 +9,42 @@
     android:paddingLeft="8dp"
     android:paddingRight="8dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/container">
+
         <android.support.v7.widget.CardView
             xmlns:card_view="http://scemas.android.com/apk/res-auto"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="64dp"
             android:layout_weight="1"
             card_view:cardCornerRadius="32dp">
-            <ImageView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:src="@drawable/number_nine"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/container">
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+
+                android:layout_height="64dp"
+                android:src="@drawable/number_nine"
                 android:id="@+id/profile_photo"
-                android:scaleType="fitXY"
-                android:background="@drawable/image_cicle"
+
                 />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:textSize="22sp"
+                    tools:text="fgjchfvvvv"
+                    android:id="@+id/username"
+
+                    android:paddingLeft="8dp"
+                    android:layout_gravity="center"/>
+
+
+            </LinearLayout>
+
         </android.support.v7.widget.CardView>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:textSize="22sp"
-            tools:text="fgjchfvvvv"
-            android:id="@+id/username"
-
-            android:paddingLeft="8dp"
-            android:layout_gravity="center"/>
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <View
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="0dp"
-            android:background="@color/tan_background" />
-
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="8dp"
-            android:paddingRight="8dp"
-            android:layout_weight="4"
-
-            android:background="@color/purple300" />
-    </LinearLayout>
-
-
-
 
 </LinearLayout>
