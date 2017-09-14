@@ -8,6 +8,18 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
     tools:context="com.muilat.j_developers.ShowDeveloperActivity">
+
+    <TextView
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@color/purple300"
+        android:layout_width="match_parent"
+        android:textColor="#FFF"
+        android:layout_height="wrap_content"
+        android:id="@+id/show_username"
+        android:textSize="28sp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -16,6 +28,8 @@
             xmlns:card_view="http://scemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/tan_background"
+
             card_view:cardCornerRadius="320dp">
             <de.hdodenhof.circleimageview.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -44,45 +58,17 @@
 
     </RelativeLayout>
 
-       <LinearLayout
+
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-        <TextView
-            android:paddingLeft="16dp"
-            android:paddingTop="24dp"
-            android:paddingBottom="24dp"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:textColor="#FFF"
-            android:layout_height="wrap_content"
-            android:id="@+id/show_username"
-            android:textSize="28sp"/>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/show_url"
-            android:paddingLeft="16dp"
-            android:background="@color/purple700"
-            android:textSize="24sp"
-            android:textColor="@color/colorAccent"
-            android:onClick="launchInBrowser"
-            android:paddingBottom="8dp"/>
-    </LinearLayout>
-
+        android:id="@+id/show_url"
+        android:paddingLeft="16dp"
+        android:background="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textColor="@color/colorAccent"
+        android:onClick="launchInBrowser"
+        android:paddingBottom="8dp"/>
 
 </LinearLayout>

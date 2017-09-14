@@ -1,10 +1,10 @@
-<resources
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" translatable="false">J-Developers</string>
     <string name="empty">No Developer found</string>
     <string name="no_internet">No Internet connection</string>
     <string name="settings">Settings</string>
     <string name="share">Share</string>
+    <string name="search">Search</string>
     <string name="settings_title">J-Developers Settings</string>
 
     <string name="settings_dev_number_key" translatable="false">devNumber</string>
@@ -12,11 +12,11 @@
 
     <string name="settings_location_key" translatable="false">location</string>
     <string name="settings_location_defaultvalue" translatable="false">lagos</string>
-    <string name="settings_location_title" >Developers Location</string>
+    <string name="settings_location_title">Developers Location</string>
 
     <string name="settings_language_key" translatable="false">language</string>
     <string name="settings_language_defaultvalue" translatable="false">java</string>
-    <string name="settings_language_title" >Developers Language</string>
+    <string name="settings_language_title">Developers Language</string>
 
     <string name="settings_order_by_username_label">Username</string>
     <string name="settings_order_by_username_value" translatable="false">username</string>
@@ -30,7 +30,7 @@
     <string name="settings_order_by_default_label">None</string>
     <string name="settings_order_by_default_value" translatable="false">order_by_default</string>
 
-    <string name="share_message">Check out this awesome developer @<xliff:g id="username" example="muilat">%s</xliff:g>, <xliff:g id="url" example="github.com/muilat">%s</xliff:g></string>
+    <string name="share_message">Check out this awesome developer @<xliff:g example="muilat" id="username">%s</xliff:g>, <xliff:g example="github.com/muilat" id="url">%s</xliff:g></string>
     <string name="share_choser_title">Share Developer with</string>
     <string name="share_subject">Java Developer: Lagos</string>
 

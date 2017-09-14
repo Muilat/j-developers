@@ -1,26 +1,8 @@
-/*
- * Copyright (C) 2016 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.muilat.j_developers.utilities;
 
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.muilat.j_developers.MainActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,23 +29,18 @@ public final class NetworkUtils {
     private static final String location = "lagos";
     /* The language we want our API to return */
     private static final String language = "java";
-    /* The number of developers we want our API to return */
-    private static final int numDays = 30;
-
-    final static String QUERY_PARAM = "q";
 
 
     /**
-     * Builds the URL used to talk to the weather server using a location. This location is based
-     * on the query capabilities of the weather provider that we are using.
+     * Builds the URL used to talk to the github
      *
      * @return The URL to use to query the github server.
      */
     public static URL buildUrl(String queryString) {
-        Log.v(TAG, "Built Strin " + queryString);
-        Github_url_string += queryString;
+        Log.v(TAG, "Built Query String " + queryString);
+        String Github_url_string_with_query = Github_url_string + queryString;
 
-        Uri builtUri = Uri.parse(Github_url_string).buildUpon()
+        Uri builtUri = Uri.parse(Github_url_string_with_query).buildUpon()
 //                .appendQueryParameter(QUERY_PARAM, queryString)
 
                 .build();
@@ -76,7 +53,6 @@ public final class NetworkUtils {
         }
 
         Log.v(TAG, "Built URI " + Github_REQUEST_URL);
-//        Toast.makeText(getContext(), "jg jfg", Toast.LENGTH_SHORT).show();
         return Github_REQUEST_URL;
     }
 

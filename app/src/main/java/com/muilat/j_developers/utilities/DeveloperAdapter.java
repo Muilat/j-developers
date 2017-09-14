@@ -20,11 +20,7 @@ import com.muilat.j_developers.R;
 public class DeveloperAdapter extends ArrayAdapter<Developer> {
 
     /**
-     * This is my own custom constructor (it doesn't mirror a superclass constructor).
-     * The context is used to inflate the layout file, and the List is the data we want
-     * to populate into the lists
-     *
-     * @param context        The current context. Used to inflate the layout file.
+     * @param context The current context. Used to inflate the layout file.
      * @param developers A List of Word objects to display in a list
      */
     public DeveloperAdapter(Activity context, List<Developer> developers){
@@ -55,7 +51,6 @@ public class DeveloperAdapter extends ArrayAdapter<Developer> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_developer, parent, false);
         }
-//        LinearLayout list_developer = (LinearLayout) convertView.findViewById(R.id.list_developer);
 
         TextView username = (TextView) convertView.findViewById(R.id.username);
         ImageView profile_photo = (ImageView)convertView.findViewById(R.id.profile_photo);

@@ -6,7 +6,7 @@ package com.muilat.j_developers.utilities;
 
 public class Developer {
 
-    //username of te developer
+    //username of the developer
     String mUsername ;
 
     //developer image

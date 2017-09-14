@@ -1,3 +1,6 @@
+/**
+ * Created by my computer on 14-Aug-17.
+ */
 package com.muilat.j_developers.utilities;
 
 import android.content.Context;
@@ -11,46 +14,47 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-/**
- * Created by my computer on 14-Aug-17.
- */
 
 public class DeveloperLoader extends android.support.v4.content.AsyncTaskLoader<ArrayList<Developer>> {
 
-    Toast toast;
 
-//    URL USGS_REQUEST_URL = MainActivity.Github_REQUEST_URL;
-
-    //to hold the list of already fetched items
-    // so there wouldnt be the need to query anotertime
-     public static ArrayList<Developer> fetched_developers = null;
+    String mSearchUsername = MainActivity.mSearchUsername;
 
 
-
+    //default constructor for the loader
     public DeveloperLoader(Context context) {
         super(context);
 
     }
 
+
+    /**
+     * This is the method of the AsyncTaskLoader that will load and parse the JSON data
+     * from github in the background.
+     *
+     * @return  developer data from githubApi as an array of Developers.
+     *         null if an error occurs
+     */
     @Override
     public ArrayList<Developer> loadInBackground() {
 
-        if(fetched_developers == null) {
+        String requestString = "";
 
             String location = JDeveloperPreferences
                     .getPreferredDeveloperLocation(getContext());
             String language = JDeveloperPreferences
                     .getPreferredDeveloperLanguage(getContext());
-            String requestString = "location:"+location+"+language:"+language;
+
+            requestString += "location:"+location+"+language:"+language;
+
+            if(mSearchUsername != "") {
+                requestString += "+" + mSearchUsername + "%20in:login";
+            }
+
             // Perform HTTP request to the URL and receive a JSON response back
             String jsonResponse = "";
             try {
@@ -65,12 +69,10 @@ public class DeveloperLoader extends android.support.v4.content.AsyncTaskLoader<
             // Extract relevant fields from the JSON response and create an {@link Event} object
             ArrayList<Developer> developers = extractDeveloper(jsonResponse);
 
-            return developers;
-        }
+            MainActivity.mSearchUsername = "";
 
-        else {
-            return fetched_developers;
-        }
+            return developers;
+//
     }
 
     /* this is requured to tell the loader to start doing the background load
@@ -85,9 +87,10 @@ public class DeveloperLoader extends android.support.v4.content.AsyncTaskLoader<
 
 
     /*
-//return a list of{@link Developer} object that has been built up from
-//parsing a json response
-*/
+    //return a list of{@link Developer} object that has been built up from
+    * @param jsonResponse The json string parse.
+
+    */
     public  ArrayList<Developer> extractDeveloper(String jsonResponse){
 
         //create an empty arraylist that we can start adding earthquake to
@@ -106,7 +109,6 @@ public class DeveloperLoader extends android.support.v4.content.AsyncTaskLoader<
 
             for(int i = 0; i < developerArray.length(); i++){
                 JSONObject currentDeveloper = developerArray.getJSONObject(i);
-//                JSONObject properties = currentDeveloper.getJSONObject("properties");
 
                 String username = currentDeveloper.getString("login");
                 String photo = currentDeveloper.getString("avatar_url");
@@ -126,7 +128,6 @@ public class DeveloperLoader extends android.support.v4.content.AsyncTaskLoader<
 
         }
 
-        fetched_developers = developers;
 
         return developers;
     }
